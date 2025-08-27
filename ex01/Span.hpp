@@ -20,8 +20,8 @@ class Span
 		long longestSpan();
 		void printElements();
 
-		template<typename InputIterator>
-		void addRange(InputIterator begin, InputIterator end)
+		template<typename Iter>
+		void addRange(Iter begin, Iter end)
 		{
 			size_t distance = std::distance(begin ,end);
 			if (_numbers.size() + distance > _maxSize)

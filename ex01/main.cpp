@@ -140,5 +140,20 @@ int main()
 	{
 		std::cerr << "Caught Exception: " << e.what() << std::endl;
 	}
+	try
+	{
+		std::cout << "\n----Edgecase----" << std::endl;
+		Span sp10(3);
+		sp10.addNumber(-1);
+		sp10.addNumber(-2);
+		sp10.addNumber(INT_MAX);
+		sp10.printElements();
+		std::cout << "Shortest Span: " << sp10.shortestSpan() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Caught Exception: " << e.what() << std::endl;
+	}
+	
 	return (0);
 }

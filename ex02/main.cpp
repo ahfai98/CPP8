@@ -4,6 +4,7 @@
 
 int main()
 {
+	std::cout << "----Test for MutantStack----" << std::endl;
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(6);
@@ -11,7 +12,7 @@ int main()
 	std::cout << "Size: " << mstack.size() << std::endl;
 	mstack.pop();
 	std::cout << "After pop, Top: " << mstack.top() << std::endl;
-	std::cout << "After pop, Top: " << mstack.size() << std::endl;
+	std::cout << "After pop, Size: " << mstack.size() << std::endl;
 
 	for (int i = 0; i < 10; i++)
 		mstack.push(i);
@@ -37,8 +38,8 @@ int main()
 
 	// Pop last element
 	lst.pop_back();
-	std::cout << "After pop, Last element (top): " << lst.back() << std::endl;
-	std::cout << "After pop, Size: " << lst.size() << std::endl;
+	std::cout << "After pop_back, Last element (top): " << lst.back() << std::endl;
+	std::cout << "After pop_back, Size: " << lst.size() << std::endl;
 
 	// Add more elements
 	for (int i = 0; i < 10; i++)

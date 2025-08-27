@@ -16,9 +16,9 @@ class Span
 		~Span();
 		Span &operator=(const Span &src);
 		void addNumber(int num);
-		long shortestSpan();
-		long longestSpan();
-		void printElements();
+		long shortestSpan() const;
+		long longestSpan() const;
+		void printElements() const;
 
 		template<typename Iter>
 		void addRange(Iter begin, Iter end)
@@ -28,7 +28,6 @@ class Span
 				throw std::runtime_error("Adding this range will exceed Span's Max Size.");
 			_numbers.insert(_numbers.end(), begin, end);
 		};
-
 	private:
 		unsigned int _maxSize;
 		std::vector<int> _numbers;

@@ -34,7 +34,7 @@ void Span::addNumber(int num)
 	_numbers.push_back(num);
 }
 
-long Span::shortestSpan()
+long Span::shortestSpan() const
 {
 	if (_numbers.size() < 2)
 		throw std::runtime_error("Less than 2 numbers, unable to find Span.");
@@ -46,16 +46,16 @@ long Span::shortestSpan()
 	return (minSpan);
 }
 
-long Span::longestSpan()
+long Span::longestSpan() const
 {
 	if (_numbers.size() < 2)
 		throw std::runtime_error("Less than 2 numbers, unable to find Span.");
 	int min = *std::min_element(_numbers.begin(), _numbers.end());
-    int max = *std::max_element(_numbers.begin(), _numbers.end());
+	int max = *std::max_element(_numbers.begin(), _numbers.end());
 	return (static_cast<long>(max) - static_cast<long>(min));
 }
 
-void Span::printElements()
+void Span::printElements() const
 {
 	if (_numbers.empty())
 	{

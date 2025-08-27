@@ -155,5 +155,35 @@ int main()
 		std::cerr << "Caught Exception: " << e.what() << std::endl;
 	}
 	
+	try
+	{
+		std::cout << "\n----Const Object Test----" << std::endl;
+		const Span constSpan(3);
+		std::cout << "Calling const printElements(): ";
+		constSpan.printElements();  // should compile
+		std::cout << "Calling const shortestSpan(): ";
+		try
+		{
+			std::cout << constSpan.shortestSpan() << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Caught Exception: " << e.what() << std::endl;
+		}
+		std::cout << "Calling const longestSpan(): ";
+		try
+		{
+			std::cout << constSpan.longestSpan() << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Caught Exception: " << e.what() << std::endl;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
 	return (0);
 }

@@ -4,10 +4,11 @@
 
 int main()
 {
-	std::cout << "----Test for MutantStack----" << std::endl;
+	std::cout << "----Test for MutantStack (non-const)----" << std::endl;
 	MutantStack<int> mstack;
 	mstack.push(5);
 	mstack.push(6);
+
 	std::cout << "Top: " << mstack.top() << std::endl;
 	std::cout << "Size: " << mstack.size() << std::endl;
 	mstack.pop();
@@ -16,46 +17,45 @@ int main()
 
 	for (int i = 0; i < 10; i++)
 		mstack.push(i);
+
 	std::cout << "Print Elements with iterator: " << std::endl;
-	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); it++)
+	for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it)
+		std::cout << *it << std::endl;
+
+	std::cout << "Print Elements with reverse iterator: " << std::endl;
+	for (MutantStack<int>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); ++it)
+		std::cout << *it << std::endl;
+
+	// -------------------------------
+	std::cout << "----Test for MutantStack (const)----" << std::endl;
+	const MutantStack<int> constMstack = mstack;
+
+	std::cout << "Print Elements with const_iterator: " << std::endl;
+	for (MutantStack<int>::const_iterator it = constMstack.begin(); it != constMstack.end(); ++it)
 	{
+		//*it += 1; //error here
 		std::cout << *it << std::endl;
 	}
-		std::cout << "Print Elements with reverse iterator: " << std::endl;
-	for (MutantStack<int>::reverse_iterator it = mstack.rbegin(); it != mstack.rend(); it++)
-	{
-		std::cout << *it << std::endl;
-	}
-	std::cout << "----Test for List----" << std::endl;
+
+	std::cout << "Print Elements with const_reverse_iterator: " << std::endl;
+	for (MutantStack<int>::const_reverse_iterator rit = constMstack.rbegin(); rit != constMstack.rend(); ++rit)
+		std::cout << *rit << std::endl;
+
+	// -------------------------------
+	std::cout << "----Test for std::list (const and non-const)----" << std::endl;
 	std::list<int> lst;
-	
-	// Push elements (push_back for list)
-	lst.push_back(5);
-	lst.push_back(6);
-
-	std::cout << "Last element (top): " << lst.back() << std::endl;
-	std::cout << "Size: " << lst.size() << std::endl;
-
-	// Pop last element
-	lst.pop_back();
-	std::cout << "After pop_back, Last element (top): " << lst.back() << std::endl;
-	std::cout << "After pop_back, Size: " << lst.size() << std::endl;
-
-	// Add more elements
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 		lst.push_back(i);
 
-	// Forward iteration
-	std::cout << "Print Elements with iterator: " << std::endl;
-	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it)
-	{
-		std::cout << *it << std::endl;
-	}
+	const std::list<int>& constLst = lst;
 
-	// Reverse iteration
-	std::cout << "Print Elements with reverse iterator: " << std::endl;
-	for (std::list<int>::reverse_iterator rit = lst.rbegin(); rit != lst.rend(); ++rit)
-	{
-		std::cout << *rit << std::endl;
-	}
+	std::cout << "Non-const list iteration:" << std::endl;
+	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it)
+		*it += 1, std::cout << *it << std::endl; // can modify values
+
+	std::cout << "Const list iteration:" << std::endl;
+	for (std::list<int>::const_iterator it = constLst.begin(); it != constLst.end(); ++it)
+		std::cout << *it << std::endl; // read-only
+
+	return 0;
 }
